@@ -26,18 +26,18 @@ struct noMemoria
 	NoMemoria *proximo;
 };
 
-Lista* criarListaCPU(int tamanhoCPU)
+Lista* criarListaCPU()
 {
 	Lista *listaCPU = (Lista *) malloc(sizeof(Lista));
 	NoMemoria *memoria = (NoMemoria *) malloc (sizeof(NoMemoria));
 
 	memoria->enderecoInicial = 0;
-	memoria->tamanhoParticao = tamanhoCPU; /**Maximo Implementado sem as Partições conforme permitido no enunciado*/
+	memoria->tamanhoParticao = TAMANHO_CPU; /**Maximo Implementado sem as Partições conforme permitido no enunciado*/
 
 	memoria->preenchido = false;
 
 	listaCPU->inicio = memoria;
-	listaCPU->tamanhoCPU = tamanhoCPU;
+	listaCPU->tamanhoCPU = TAMANHO_CPU;
 
 	return listaCPU;
 }
@@ -138,6 +138,27 @@ void imprimirListaCPU(Lista *listaCPU)
 	}
 }
 
+void imprimirListaCPUArquivoLog(Lista *listaCPU)
+{
+	NoMemoria *ptr = listaCPU->inicio;
+
+	for(;ptr!=NULL;ptr = ptr->proximo)
+	{
+		if(ptr->preenchido)
+			fprintf(arquivoLog,"|Preenchido|");
+		else
+			fprintf(arquivoLog,"|Vazio|");
+
+		fprintf(arquivoLog,"|Inicio = %d|",ptr->enderecoInicial);
+		fprintf(arquivoLog,"|Tamanho = %d|",ptr->tamanhoParticao);
+		
+		if(ptr->preenchido)
+			fprintf(arquivoLog,"|IdProcesso - %d|\n",pegarIdProcesso(ptr->processo));
+		else	
+			fprintf(arquivoLog,"|IdProcesso - N/A|\n");
+	}
+}
+
 //Os Algoritmos BestFit,FirstFit e WorstFit consideram que o Processo que está na CPU
 //no momento (Caso Exista) ja atingiu seu tempo Limite
 //Essa verificação é feita previamente na Etapa Anterior pelo Relógio
@@ -201,25 +222,23 @@ NoMemoria* buscarParticaoMemoriaWorstFit(Lista *listaCPU,NoProcesso *processo)
 	return piorParticao;
 }
 
-void alocarMemoria(Lista *listaCPU,NoProcesso *processo,char tipoAlgoritmo)
+bool alocarMemoria(Lista *listaCPU,NoProcesso *processo,char tipoAlgoritmo)
 {
-	printf("Inicio Algoritmo\n");
-	imprimirListaCPU(listaCPU);
-	
 	NoMemoria *particaoEncontrada = NULL;
+	bool memoriaAlocada = false;
 	
 	switch(tipoAlgoritmo)
 	{ 
 		case 'F':
-			fprintf(arquivoLog,"Executando First Fit - IdProcesso Nº%d\n",pegarIdProcesso(processo));
+			//fprintf(arquivoLog,"Executando First Fit - IdProcesso Nº%d\n",pegarIdProcesso(processo));
 			particaoEncontrada = buscarParticaoMemoriaFirstFit(listaCPU,processo);
 			break;
 		case 'B':
-			fprintf(arquivoLog,"Executando Best Fit - IdProcesso Nº%d\n",pegarIdProcesso(processo));
+			//fprintf(arquivoLog,"Executando Best Fit - IdProcesso Nº%d\n",pegarIdProcesso(processo));
 			particaoEncontrada = buscarParticaoMemoriaBestFit(listaCPU,processo);
 			break;
 		case 'W':
-			fprintf(arquivoLog,"Executando Worst Fit - IdProcesso Nº%d\n",pegarIdProcesso(processo));
+			//fprintf(arquivoLog,"Executando Worst Fit - IdProcesso Nº%d\n",pegarIdProcesso(processo));
 			particaoEncontrada = buscarParticaoMemoriaWorstFit(listaCPU,processo);
 			break;		
 	}
@@ -231,9 +250,9 @@ void alocarMemoria(Lista *listaCPU,NoProcesso *processo,char tipoAlgoritmo)
 		particaoEncontrada->processo = processo;
 
 		insereListaCPUOrdenada(listaCPU,particaoEncontrada);
-	}
 
-	printf("Final Algoritmo\n");
-	imprimirListaCPU(listaCPU);
+		memoriaAlocada = true;
+	}
+	return memoriaAlocada;
 }
 

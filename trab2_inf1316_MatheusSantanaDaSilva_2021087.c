@@ -22,7 +22,7 @@ Lista *listaCPU;
 void inicializarArquivoLog (char *nomeArquivoLog);
 int pegarTamanhoProcessoArquivo(char *linhaArquivo);
 void inicializarFilas (char *nomeArquivoProcesso);
-void exibirResumoExecucao(NoProcesso *processo,Fila *filaProntos,Fila *filaBloqueados,int tempoDecorrido);
+void exibirResumoExecucao(NoProcesso *processo,Fila *filaProntos,Fila *filaBloqueados,int tempoDecorrido,Lista *listaCPU);
 void iniciarProcessamentoCPU();
 
 void inicializarArquivoLog (char *nomeArquivoLog)
@@ -72,6 +72,12 @@ void inicializarFilas (char *nomeArquivoProcesso)
 	int quantidadeExecIo;
 	char tipoExecIo[5];
 	int tempoExecIo;
+
+	struct timeval tempoInicialProcesso;
+	struct timeval tempoFinalProcesso;
+
+	tempoInicialProcesso.tv_sec = 0;
+	tempoFinalProcesso.tv_sec = 0;
 		
 	arquivoProcessos = fopen(nomeArquivoProcesso,"r");
 	
@@ -100,7 +106,6 @@ void inicializarFilas (char *nomeArquivoProcesso)
 		}
 		else if(strstr(linha,"Processo"))
 		{
-			//tamanhoProcesso = (int)(linha[strlen(linha)-4]) - '0';
 			tamanhoProcesso = pegarTamanhoProcessoArquivo(linha);
 
 			char *token = strtok(linha," ");
@@ -124,9 +129,9 @@ void inicializarFilas (char *nomeArquivoProcesso)
 				continue;
 			}
 					
-			inserirFila(filaProntos,idProcesso,tamanhoProcesso,0,"",0);
+			inserirFila(filaProntos,idProcesso,tamanhoProcesso,0,"",0,false,tempoInicialProcesso,tempoFinalProcesso);
 			fprintf(arquivoLog,"\nLendo Processo Nº %d - ",idProcesso);
-			fprintf(arquivoLog,"Tamanho %d - ",tamanhoProcesso);
+			fprintf(arquivoLog,"Tamanho %dKb - ",tamanhoProcesso);
 
 			continue;
 		}
@@ -155,7 +160,7 @@ void inicializarFilas (char *nomeArquivoProcesso)
        		 	token = strtok(NULL, " ");
     		}
 
-			inserirFila(filaProntos,idProcesso,tamanhoProcesso,quantidadeExecIo,tipoExecIo,tempoExecIo);	
+			inserirFila(filaProntos,idProcesso,tamanhoProcesso,quantidadeExecIo,tipoExecIo,tempoExecIo,false,tempoInicialProcesso,tempoFinalProcesso);	
 			fprintf(arquivoLog," [%s:%d:%s]",tipoExecIo,tempoExecIo,"Não Lida");				
 		}
 		else
@@ -167,7 +172,7 @@ void inicializarFilas (char *nomeArquivoProcesso)
 
 			quantidadeExecIo = atoi(linha);
 
-			inserirFila(filaProntos,idProcesso,tamanhoProcesso,quantidadeExecIo,"",0);	
+			inserirFila(filaProntos,idProcesso,tamanhoProcesso,quantidadeExecIo,"",0,false,tempoInicialProcesso,tempoFinalProcesso);	
 			fprintf(arquivoLog,"Quantidade Exec/Io %d",quantidadeExecIo);	
 		}
 	}
@@ -175,11 +180,21 @@ void inicializarFilas (char *nomeArquivoProcesso)
 	fprintf(arquivoLog,"\n");
 }
 
-void exibirResumoExecucao(NoProcesso *processo,Fila *filaProntos,Fila *filaBloqueados,int tempoDecorrido)
+void exibirResumoExecucao(NoProcesso *processo,
+						  Fila *filaProntos,
+						  Fila *filaBloqueados,
+						  int tempoDecorrido,
+						  Lista *listaCPU)
 {
-	fprintf(arquivoLog,"*******RESUMO EXECUÇÃO*********");
-	fprintf(arquivoLog,"Processo na CPU - IdProcesso %d|",pegarIdProcesso(processo));
-	//fprintf(arquivoLog,);
+	fprintf(arquivoLog,"\n*************RESUMO EXECUÇÃO*************\n");
+	fprintf(arquivoLog,"Processo Entrando na CPU - IdProcesso %d|\n",pegarIdProcesso(processo));
+	fprintf(arquivoLog,"\n*************Processos na Fila de Pronto e Tempos Restantes*************\n");
+	imprimirFilaArquivoLog(filaProntos);
+	fprintf(arquivoLog,"\n*************Processos na Fila de Bloqueados e Tempos Restantes*************\n");
+	imprimirFilaArquivoLog(filaBloqueados);
+	fprintf(arquivoLog,"\n*************Processo na CPU*************\n");
+	imprimirListaCPUArquivoLog(listaCPU);
+	fprintf(arquivoLog,"|TempoDecorrido %d|\n",tempoDecorrido);
 }
 
 void iniciarProcessamentoCPU() 
@@ -188,11 +203,14 @@ void iniciarProcessamentoCPU()
 	struct timeval tempoFinalRelogio;
 	
 	int tempoDecorrido;
-	
 	int tipoAlgoritmo;
 
 	NoProcesso *processo;
-	TipoInstrucao proximaNaoLida;
+	TipoInstrucao *proximaNaoLida;
+
+	bool tempoLimite;
+	bool terminouInstrucao;
+	bool memoriaAlocada;
 
 	fprintf(arquivoLog,"Iniciando CPU - Relógio será Disparado\n");
 	fprintf(arquivoLog,"Inicializando Lista de Memória da CPU\n");
@@ -212,48 +230,99 @@ void iniciarProcessamentoCPU()
 	gettimeofday(&tempoInicialRelogio,NULL);
 	
 	listaCPU = criarListaCPU();
-
+	
 	while(!filaVazia(filaProntos) || !filaVazia(filaBloqueados)) //|| !listaCPUVazia())
 	{
-		if(listaCPUVazia(listaCPU))
-		{
-			processo = retirarProcessoDaFila(filaProntos);
-			proximaNaoLida = pegarProximaInstrucaoNaoLida(processo);			
+		// Explicação da Regra de Neǵocio
+		// listaCPUVazia(listaCPU) - Na Primeira Execução a CPU estará Vazia, contempla o Primeiro Passo
+		// tempoLimite - Quando o TempoLimite é atingido deve-se dar lugar à um Novo Processo na FIla de Prontos
+		// terminouInstrucao - Quando a Instrução de Exec Terminou deve-se dar lugar à um outro Processo na FIla de Prontos
+		// memoriaAlocada - Se a Memória não puder ser alocada, a especificação manda colocar na Fila de Bloqueados
 		
-			if(strstr(proximaNaoLida.tipoExecIo,"exec"))
+		if((listaCPUVazia(listaCPU) || tempoLimite || terminouInstrucao || !memoriaAlocada)
+			&& !filaVazia(filaProntos))
+		{	
+			processo = retirarProcessoDaFila(filaProntos);
+
+			proximaNaoLida = pegarProximaInstrucaoNaoLida(processo);			
+			
+			//Recomeçar a Contagem
+			tempoLimite = false;
+			terminouInstrucao = false;
+
+			if(strstr(proximaNaoLida->tipoExecIo,"exec"))
 			{
 				iniciarRelogioDoProcesso(processo);
-				alocarMemoria(listaCPU,processo,tipoAlgoritmo);
+				iniciarRelogioDaInstrucao(proximaNaoLida);
+				memoriaAlocada = alocarMemoria(listaCPU,processo,tipoAlgoritmo);
+				
+				if(!memoriaAlocada)
+				{
+					// Especificação Item 6 - Mandar para a Fila de Bloqueados
+					fprintf(arquivoLog,"ERRO.: IdProcesso %d não alocado - ",pegarIdProcesso(processo));
+					fprintf(arquivoLog,"Falta de Memória na CPU - ");
+					imprimirListaCPUArquivoLog(listaCPU);
+
+					inserirProcessoFila(filaBloqueados,processo);
+				}
+			}
+			else if (strstr(proximaNaoLida->tipoExecIo,"io"))
+			{
+				//Falta alguma coisa?
+				inserirProcessoFila(filaBloqueados,processo);
 			}
 		}
 		else
 		{
-			bool terminouInstrucao = instrucaoExecIoTerminou(processo,proximaNaoLida.tempoExecIo);
-
-			if(!terminouInstrucao)
+			if(!filaVazia(filaProntos))
 			{
-				bool tempoLimite = atingiuTempoLimite(processo,pegarTimeSliceCPU());
+				terminouInstrucao = instrucaoExecIoTerminou(proximaNaoLida);
+
+				if(!terminouInstrucao)
+				{
+					tempoLimite = atingiuTempoLimite(processo,pegarTimeSliceCPU());
+
+					if(tempoLimite) 
+					{
+						inserirProcessoFila(filaProntos,processo);
+						continue;
+					}
+				}
+				else
+				{
+					proximaNaoLida = pegarProximaInstrucaoNaoLida(processo);	
+					//Verificar se Há uma Próxima Instrução 
+					//TO DO.: Verificar se só faz sentido deixar o Io ou 
+					//Mudar a Implementação para Contar quantos já foram lidos
+					if(strstr(proximaNaoLida->tipoExecIo,"exec") || strstr(proximaNaoLida->tipoExecIo,"io"))
+					{
+						iniciarRelogioDaInstrucao(proximaNaoLida);
+						inserirProcessoFila(filaBloqueados,processo);
+						imprimirFilaArquivoLog(filaBloqueados);
+						continue;
+					}
+				}
 			}
 			else
 			{
-				//tirarDaCPU
-				//verificarseaindatemoquefazer
-				//caso postivo jogarNoFiladeBloqueados
-				//caso contrario jogarfora
+				//limpar CPU
 			}
 		}
 
 		gettimeofday(&tempoFinalRelogio,NULL);
 	
 		tempoDecorrido = (tempoFinalRelogio.tv_sec - tempoInicialRelogio.tv_sec);
-	
-		if(tempoDecorrido%pegarTimeSliceCPU() == 0 || tempoDecorrido < 1) //Contemplar o Início do Programa
+
+		if(tempoDecorrido%1 == 0 || tempoDecorrido < 1) //Contemplar o Início do Programa
 		{
-			exibirResumoExecucao(processo,filaProntos,filaBloqueados,tempoDecorrido);
+			exibirResumoExecucao(processo,filaProntos,filaBloqueados,tempoDecorrido,listaCPU);
 		}
-	
+
 		sleep(1);
+		printf("Tempo Decorrido %d\n",tempoDecorrido+1);
 		incrementarRelogioDoProcesso(processo);
+		incrementarRelogioDaInstrucao(proximaNaoLida);
+		atualizarProcessosAguardandoIo(filaBloqueados,filaProntos);
 	}		
 }
 
@@ -261,6 +330,6 @@ int main ()
 {
 	inicializarArquivoLog("log_SimuladorMemoria.txt");
 	inicializarFilas("Processo.txt");
-	imprimirFila(filaProntos);
+	imprimirFilaArquivoLog(filaProntos);
 	iniciarProcessamentoCPU();
 }

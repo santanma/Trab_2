@@ -18,10 +18,12 @@ void insereListaCPUOrdenada(Lista *listaCPU,NoMemoria *particaoNova);
 
 void imprimirListaCPU(Lista *listaCPU);
 
+void imprimirListaCPUArquivoLog (Lista *listaCPU);
+
 NoMemoria* buscarParticaoMemoriaBestFit(Lista *listaCPU,NoProcesso *processo);
 
 NoMemoria* buscarParticaoMemoriaFirstFit(Lista *listaCPU,NoProcesso *processo);
 
 NoMemoria* buscarParticaoMemoriaWorstFit(Lista *listaCPU,NoProcesso *processo);
 
-void alocarMemoria(Lista *listaCPU,NoProcesso *processo,char tipoAlgoritmo);
+bool alocarMemoria(Lista *listaCPU,NoProcesso *processo,char tipoAlgoritmo);

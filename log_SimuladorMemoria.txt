@@ -1,0 +1,22 @@
+Arquivo de Log Criado com Sucesso ---> log_SimuladorMemoria.txt
+Iniciando Leitura dos Processos ---> Processo.txt
+Quantidade de Processos ---> 1
+Lendo Processo Nº 133 - Tamanho 2Kb - Quantidade Exec/Io 1 [exec:3:Não Lida]
+|IdProcesso 133||Tamanho Processo 2Kb||Quantidade Exec/Io 1|
+{[exec:0 de 3:Não Lida] }
+Iniciando CPU - Relógio será Disparado
+Inicializando Lista de Memória da CPU
+Capturando o Algoritmo de Alocação de Memória
+Algoritmo de Alocação de Memória Selecionado
+
+*************RESUMO EXECUÇÃO*************
+Processo Entrando na CPU - IdProcesso 133|
+
+*************Processos na Fila de Pronto e Tempos Restantes*************
+
+*************Processos na Fila de Bloqueados e Tempos Restantes*************
+
+*************Processo na CPU*************
+|Preenchido||Inicio = 0||Tamanho = 2||IdProcesso - 133|
+|Vazio||Inicio = 2||Tamanho = 14||IdProcesso - N/A|
+|TempoDecorrido 0|

@@ -1,4 +1,5 @@
 #include <stdbool.h> 
+#include <sys/time.h>
 
 //Necessário pois está sendo Usado na Main também 
 typedef struct tipoInstrucao TipoInstrucao;
@@ -6,6 +7,9 @@ struct tipoInstrucao {
 	char tipoExecIo[5]; /*exec ou Io*/
 	int tempoExecIo;
 	bool instrucaoLida; /*Marca para sabermos quais Instruções já foram lidas no Vetor*/
+
+	struct timeval tempoInicialInstrucao;
+	struct timeval tempoFinalInstrucao;
 };
 typedef struct noProcesso NoProcesso;
 typedef struct fila Fila;
@@ -17,9 +21,16 @@ void inserirFila (Fila *f,
 				  int tamanhoProcesso,
 				  int quantidadeExecIo,
 				  char *tipoExecIo,
-				  int tempoExecIo);
+				  int tempoExecIo,
+				  bool instrucaoLida,
+				  struct timeval tempoInicialInstrucao,
+				  struct timeval tempoFinalInstrucao);
+
+void inserirProcessoFila (Fila *f,NoProcesso *processo);
 
 void imprimirFila(Fila *f);
+
+void imprimirFilaArquivoLog (Fila *f);
  
 bool filaVazia(Fila *f);
 
@@ -29,14 +40,24 @@ int pegarTamanhoProcesso (NoProcesso *processo);
 
 int pegarIdProcesso (NoProcesso *processo);
 
-TipoInstrucao pegarProximaInstrucaoNaoLida(NoProcesso *processo);
+TipoInstrucao* pegarProximaInstrucaoNaoLida(NoProcesso *processo);
 
 void iniciarRelogioDoProcesso(NoProcesso *processo);
 
+void iniciarRelogioDaInstrucao(TipoInstrucao *tipoInstrucao);
+
 void incrementarRelogioDoProcesso(NoProcesso *processo);
 
-bool instrucaoExecIoTerminou(NoProcesso *processo,int tempoExecIo);
+void incrementarRelogioDaInstrucao(TipoInstrucao *tipoInstrucao);
+
+int pegarTempoDecorridoDoProcesso(NoProcesso *processo);
+
+int pegarTempoDecorridoDaInstrucao(TipoInstrucao tipoInstrucao);
+
+bool instrucaoExecIoTerminou(TipoInstrucao *tipoInstrucao);
 
 bool atingiuTempoLimite(NoProcesso *processo,int timeSlice);
+
+void atualizarProcessosAguardandoIo(Fila *filaBloqueados,Fila *filaProntos);
 
 
