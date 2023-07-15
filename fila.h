@@ -14,7 +14,9 @@ struct tipoInstrucao {
 typedef struct noProcesso NoProcesso;
 typedef struct fila Fila;
 
-Fila* criarFila ();
+Fila* criarFila (); 
+
+int pegarTamanhoFila (Fila* fila);
 
 void inserirFila (Fila *f,
 				  int idProcesso,
@@ -30,21 +32,25 @@ void inserirProcessoFila (Fila *f,NoProcesso *processo);
 
 void imprimirFila(Fila *f);
 
+void imprimirProcessoArquivoLog (NoProcesso *processo);
+
 void imprimirFilaArquivoLog (Fila *f);
  
 bool filaVazia(Fila *f);
 
 NoProcesso* retirarProcessoDaFila(Fila *f);
 
-int pegarTamanhoProcesso (NoProcesso *processo);
+int pegarTamanhoProcesso(NoProcesso *processo);
 
-int pegarIdProcesso (NoProcesso *processo);
+int pegarIdProcesso(NoProcesso *processo);
 
 TipoInstrucao* pegarProximaInstrucaoNaoLida(NoProcesso *processo);
 
 void iniciarRelogioDoProcesso(NoProcesso *processo);
 
 void iniciarRelogioDaInstrucao(TipoInstrucao *tipoInstrucao);
+
+void retomarRelogioDaInstrucao(TipoInstrucao *tipoInstrucao);
 
 void incrementarRelogioDoProcesso(NoProcesso *processo);
 
@@ -59,5 +65,3 @@ bool instrucaoExecIoTerminou(TipoInstrucao *tipoInstrucao);
 bool atingiuTempoLimite(NoProcesso *processo,int timeSlice);
 
 void atualizarProcessosAguardandoIo(Fila *filaBloqueados,Fila *filaProntos);
-
-

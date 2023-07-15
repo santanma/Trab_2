@@ -5,6 +5,7 @@
 #include <stdbool.h>
 #include <string.h>
 #include <sys/time.h>
+#include <unistd.h>
 
 extern FILE *arquivoLog;
 
@@ -33,7 +34,20 @@ Fila* criarFila ()
 	Fila *f = (Fila *) malloc(sizeof(Fila));
 	f->inicio = f->fim = NULL;
 
-	return f;
+	return f; 
+}
+
+int pegarTamanhoFila (Fila* fila)
+{
+	int tamanhoFila = 0;
+	NoProcesso *ptr = fila->inicio;
+
+	for(;ptr!=NULL;ptr = ptr->proximo)
+	{
+		tamanhoFila++;
+	}
+
+	return tamanhoFila;
 }
 
 void inserirFila (Fila *f,
@@ -150,20 +164,35 @@ void imprimirFila(Fila *f)
 		printf("|Tamanho Processo %dKb|",ptr->tamanhoProcesso);
 		printf("|Quantidade Exec/Io %d|",ptr->quantidadeExecIo);
 		
-		printf("\n{");
 		for(int i = 0;i < ptr->quantidadeExecIoLidas; i++)
 		{
 			int tempoDecorridoInstrucao;
 
 			tempoDecorridoInstrucao = pegarTempoDecorridoDaInstrucao(ptr->tipoInstrucao[i]);
 
-			printf("[%s:%d de %d:%s] ",ptr->tipoInstrucao[i].tipoExecIo,
+			printf("[%s:%d de %d:%s]/n",ptr->tipoInstrucao[i].tipoExecIo,
 									   ptr->tipoInstrucao[i].instrucaoLida ? tempoDecorridoInstrucao : 0,
 								 	   ptr->tipoInstrucao[i].tempoExecIo,
 								 	   ptr->tipoInstrucao[i].instrucaoLida ? "Lida":"Não Lida");	
 		}
-		printf("}\n");
+
 	}
+}
+
+void imprimirProcessoArquivoLog (NoProcesso *processo)
+{
+	for(int i = 0;i < processo->quantidadeExecIoLidas; i++)
+	{
+		int tempoDecorridoInstrucao;
+
+		tempoDecorridoInstrucao = pegarTempoDecorridoDaInstrucao(processo->tipoInstrucao[i]);
+		
+		fprintf(arquivoLog," [%s:%d de %d:%s]",processo->tipoInstrucao[i].tipoExecIo,
+												 processo->tipoInstrucao[i].instrucaoLida ? tempoDecorridoInstrucao : 0,
+												 processo->tipoInstrucao[i].tempoExecIo,
+								 				 processo->tipoInstrucao[i].instrucaoLida ? "Lida":"Não Lida");	
+	}
+	fprintf(arquivoLog,"\n");
 }
 
 void imprimirFilaArquivoLog (Fila *f)
@@ -176,20 +205,18 @@ void imprimirFilaArquivoLog (Fila *f)
 		fprintf(arquivoLog,"|Tamanho Processo %dKb|",ptr->tamanhoProcesso);
 		fprintf(arquivoLog,"|Quantidade Exec/Io %d|",ptr->quantidadeExecIo);
 		
-		fprintf(arquivoLog,"\n{");
 		for(int i = 0;i < ptr->quantidadeExecIoLidas; i++)
 		{
 			int tempoDecorridoInstrucao;
 
 			tempoDecorridoInstrucao = pegarTempoDecorridoDaInstrucao(ptr->tipoInstrucao[i]);
 
-			fprintf(arquivoLog,"[%s:%d de %d:%s] ",ptr->tipoInstrucao[i].tipoExecIo,
+			fprintf(arquivoLog," [%s:%d de %d:%s]",ptr->tipoInstrucao[i].tipoExecIo,
 												   ptr->tipoInstrucao[i].instrucaoLida ? tempoDecorridoInstrucao : 0,
 												   ptr->tipoInstrucao[i].tempoExecIo,
 								 				   ptr->tipoInstrucao[i].instrucaoLida ? "Lida":"Não Lida");	
 		}
-		
-		fprintf(arquivoLog,"}\n");
+		fprintf(arquivoLog,"\n");
 	}
 }
 
@@ -231,11 +258,9 @@ TipoInstrucao* pegarProximaInstrucaoNaoLida(NoProcesso *processo)
 	TipoInstrucao *proximaNaoLida = (TipoInstrucao*) malloc (sizeof(TipoInstrucao));;
 
 	strcpy(proximaNaoLida->tipoExecIo,"");
-
 	for(int i=0;i < processo->quantidadeExecIo; i++)
 	{
-		
-		if(!(processo->tipoInstrucao[i].instrucaoLida))
+		if(!(processo->tipoInstrucao[i].instrucaoLida) || (processo->tipoInstrucao[i].instrucaoLida && !instrucaoExecIoTerminou(&processo->tipoInstrucao[i])))
 		{
 			proximaNaoLida = &processo->tipoInstrucao[i];
 			strcpy(proximaNaoLida->tipoExecIo,processo->tipoInstrucao[i].tipoExecIo);
@@ -244,7 +269,6 @@ TipoInstrucao* pegarProximaInstrucaoNaoLida(NoProcesso *processo)
 			break;
 		}
 	}
-
 	return proximaNaoLida;
 }
 
@@ -258,6 +282,14 @@ void iniciarRelogioDaInstrucao(TipoInstrucao *tipoInstrucao)
 {
 	gettimeofday(&tipoInstrucao->tempoInicialInstrucao,NULL);
 	gettimeofday(&tipoInstrucao->tempoFinalInstrucao,NULL);
+}
+
+void retomarRelogioDaInstrucao(TipoInstrucao *tipoInstrucao) 
+{
+	int tempoDecorrido = pegarTempoDecorridoDaInstrucao(*tipoInstrucao);
+	iniciarRelogioDaInstrucao(tipoInstrucao);
+	sleep(tempoDecorrido); // Correto Seria Usar settimeofDay() mas não consegui dar as permissões do Linux
+	tipoInstrucao->tempoFinalInstrucao.tv_sec = tipoInstrucao->tempoFinalInstrucao.tv_sec + tempoDecorrido;
 }
 
 void incrementarRelogioDoProcesso(NoProcesso *processo)
@@ -310,14 +342,26 @@ void atualizarProcessosAguardandoIo(Fila *filaBloqueados,Fila *filaProntos)
 		for(int i = 0;i < ptr->quantidadeExecIo ; i++)
 		{
 			if(strstr(tipoInstrucao[i].tipoExecIo,"io")
-			   && tipoInstrucao[i].instrucaoLida)
+			   && tipoInstrucao[i].instrucaoLida && !instrucaoExecIoTerminou(&tipoInstrucao[i]))
 			{
+				if((tipoInstrucao[i].tempoFinalInstrucao.tv_sec - tipoInstrucao[i].tempoInicialInstrucao.tv_sec)==0)
+				{
+					iniciarRelogioDaInstrucao(&tipoInstrucao[i]);
+					sleep(1);
+				}
+
 				incrementarRelogioDaInstrucao(&tipoInstrucao[i]);
 
 				if(instrucaoExecIoTerminou(&tipoInstrucao[i]))
 				{
 					inicioFila = retirarProcessoDaFila(filaBloqueados);
-					inserirProcessoFila(filaProntos,inicioFila);
+
+					TipoInstrucao* proximaNaoLida = pegarProximaInstrucaoNaoLida(inicioFila);
+
+					if(strstr(proximaNaoLida->tipoExecIo,"exec"))	
+					{	
+						inserirProcessoFila(filaProntos,inicioFila);
+					}
 				}
 				else // Rodar Elemento -> Tira do Início da Fila e Coloca no Final
 				{

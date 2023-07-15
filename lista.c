@@ -55,6 +55,11 @@ bool listaCPUVazia(Lista *listaCPU)
 	return true;
 }
 
+Lista* limparCPU ()
+{
+	return criarListaCPU();
+}
+
 int pegarTamanhoCPU()
 {
 	return TAMANHO_CPU;
@@ -63,6 +68,12 @@ int pegarTamanhoCPU()
 int pegarTimeSliceCPU()
 {
 	return TIME_SLICE;
+}
+
+int pegarIdProcessoExecutandoNaCPU(Lista *listaCPU)
+{
+	NoMemoria *noMemoria = localizarParticaoExecutandoNaCPU(listaCPU);
+	return pegarIdProcesso(noMemoria->processo);
 }
 
 NoMemoria* localizarParticaoExecutandoNaCPU(Lista *listaCPU)
@@ -153,9 +164,12 @@ void imprimirListaCPUArquivoLog(Lista *listaCPU)
 		fprintf(arquivoLog,"|Tamanho = %d|",ptr->tamanhoParticao);
 		
 		if(ptr->preenchido)
-			fprintf(arquivoLog,"|IdProcesso - %d|\n",pegarIdProcesso(ptr->processo));
+			fprintf(arquivoLog,"|IdProcesso - %d|",pegarIdProcesso(ptr->processo));
 		else	
 			fprintf(arquivoLog,"|IdProcesso - N/A|\n");
+
+		if(ptr->processo != NULL)
+			imprimirProcessoArquivoLog(ptr->processo);
 	}
 }
 

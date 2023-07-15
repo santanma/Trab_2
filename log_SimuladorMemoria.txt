@@ -1,22 +1,642 @@
 Arquivo de Log Criado com Sucesso ---> log_SimuladorMemoria.txt
 Iniciando Leitura dos Processos ---> Processo.txt
-Quantidade de Processos ---> 1
-Lendo Processo Nº 133 - Tamanho 2Kb - Quantidade Exec/Io 1 [exec:3:Não Lida]
-|IdProcesso 133||Tamanho Processo 2Kb||Quantidade Exec/Io 1|
-{[exec:0 de 3:Não Lida] }
+Quantidade de Processos ---> 5
+Lendo Processo Nº 133 - Tamanho 8Kb - Quantidade Exec/Io 3 [exec:6:Não Lida] [io:2:Não Lida] [exec:5:Não Lida]
+Lendo Processo Nº 333 - Tamanho 9Kb - Quantidade Exec/Io 5 [exec:4:Não Lida] [io:3:Não Lida] [exec:3:Não Lida] [io:2:Não Lida] [exec:5:Não Lida]
+Lendo Processo Nº 578 - Tamanho 2Kb - Quantidade Exec/Io 2 [exec:7:Não Lida] [io:3:Não Lida]
+Lendo Processo Nº 1000 - Tamanho 10Kb - Quantidade Exec/Io 3 [exec:5:Não Lida] [io:5:Não Lida] [exec:2:Não Lida]
+Lendo Processo Nº 2000 - Tamanho 7Kb - Quantidade Exec/Io 1 [exec:5:Não Lida]
+|IdProcesso 133||Tamanho Processo 8Kb||Quantidade Exec/Io 3| [exec:0 de 6:Não Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+|IdProcesso 333||Tamanho Processo 9Kb||Quantidade Exec/Io 5| [exec:0 de 4:Não Lida] [io:0 de 3:Não Lida] [exec:0 de 3:Não Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+|IdProcesso 578||Tamanho Processo 2Kb||Quantidade Exec/Io 2| [exec:0 de 7:Não Lida] [io:0 de 3:Não Lida]
+|IdProcesso 1000||Tamanho Processo 10Kb||Quantidade Exec/Io 3| [exec:0 de 5:Não Lida] [io:0 de 5:Não Lida] [exec:0 de 2:Não Lida]
+|IdProcesso 2000||Tamanho Processo 7Kb||Quantidade Exec/Io 1| [exec:0 de 5:Não Lida]
 Iniciando CPU - Relógio será Disparado
 Inicializando Lista de Memória da CPU
 Capturando o Algoritmo de Alocação de Memória
 Algoritmo de Alocação de Memória Selecionado
 
 *************RESUMO EXECUÇÃO*************
-Processo Entrando na CPU - IdProcesso 133|
+|TempoDecorrido T=1|
+Processo na CPU - IdProcesso 133|
+
+*************Processos na Fila de Pronto e Tempos Restantes*************
+|IdProcesso 333||Tamanho Processo 9Kb||Quantidade Exec/Io 5| [exec:0 de 4:Não Lida] [io:0 de 3:Não Lida] [exec:0 de 3:Não Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+|IdProcesso 578||Tamanho Processo 2Kb||Quantidade Exec/Io 2| [exec:0 de 7:Não Lida] [io:0 de 3:Não Lida]
+|IdProcesso 1000||Tamanho Processo 10Kb||Quantidade Exec/Io 3| [exec:0 de 5:Não Lida] [io:0 de 5:Não Lida] [exec:0 de 2:Não Lida]
+|IdProcesso 2000||Tamanho Processo 7Kb||Quantidade Exec/Io 1| [exec:0 de 5:Não Lida]
+
+*************Processos na Fila de Bloqueados e Tempos Restantes*************
+
+*************Processo na CPU*************
+|Preenchido||Inicio = 0||Tamanho = 8||IdProcesso - 133| [exec:1 de 6:Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+|Vazio||Inicio = 8||Tamanho = 8||IdProcesso - N/A|
+
+*************RESUMO EXECUÇÃO*************
+|TempoDecorrido T=2|
+Processo na CPU - IdProcesso 133|
+
+*************Processos na Fila de Pronto e Tempos Restantes*************
+|IdProcesso 333||Tamanho Processo 9Kb||Quantidade Exec/Io 5| [exec:0 de 4:Não Lida] [io:0 de 3:Não Lida] [exec:0 de 3:Não Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+|IdProcesso 578||Tamanho Processo 2Kb||Quantidade Exec/Io 2| [exec:0 de 7:Não Lida] [io:0 de 3:Não Lida]
+|IdProcesso 1000||Tamanho Processo 10Kb||Quantidade Exec/Io 3| [exec:0 de 5:Não Lida] [io:0 de 5:Não Lida] [exec:0 de 2:Não Lida]
+|IdProcesso 2000||Tamanho Processo 7Kb||Quantidade Exec/Io 1| [exec:0 de 5:Não Lida]
+
+*************Processos na Fila de Bloqueados e Tempos Restantes*************
+
+*************Processo na CPU*************
+|Preenchido||Inicio = 0||Tamanho = 8||IdProcesso - 133| [exec:2 de 6:Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+|Vazio||Inicio = 8||Tamanho = 8||IdProcesso - N/A|
+
+*************RESUMO EXECUÇÃO*************
+|TempoDecorrido T=3|
+Processo na CPU - IdProcesso 133|
+
+*************Processos na Fila de Pronto e Tempos Restantes*************
+|IdProcesso 333||Tamanho Processo 9Kb||Quantidade Exec/Io 5| [exec:0 de 4:Não Lida] [io:0 de 3:Não Lida] [exec:0 de 3:Não Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+|IdProcesso 578||Tamanho Processo 2Kb||Quantidade Exec/Io 2| [exec:0 de 7:Não Lida] [io:0 de 3:Não Lida]
+|IdProcesso 1000||Tamanho Processo 10Kb||Quantidade Exec/Io 3| [exec:0 de 5:Não Lida] [io:0 de 5:Não Lida] [exec:0 de 2:Não Lida]
+|IdProcesso 2000||Tamanho Processo 7Kb||Quantidade Exec/Io 1| [exec:0 de 5:Não Lida]
+
+*************Processos na Fila de Bloqueados e Tempos Restantes*************
+
+*************Processo na CPU*************
+|Preenchido||Inicio = 0||Tamanho = 8||IdProcesso - 133| [exec:3 de 6:Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+|Vazio||Inicio = 8||Tamanho = 8||IdProcesso - N/A|
+
+*************RESUMO EXECUÇÃO*************
+|TempoDecorrido T=4|
+Processo na CPU - IdProcesso 133|
+
+*************Processos na Fila de Pronto e Tempos Restantes*************
+|IdProcesso 333||Tamanho Processo 9Kb||Quantidade Exec/Io 5| [exec:0 de 4:Não Lida] [io:0 de 3:Não Lida] [exec:0 de 3:Não Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+|IdProcesso 578||Tamanho Processo 2Kb||Quantidade Exec/Io 2| [exec:0 de 7:Não Lida] [io:0 de 3:Não Lida]
+|IdProcesso 1000||Tamanho Processo 10Kb||Quantidade Exec/Io 3| [exec:0 de 5:Não Lida] [io:0 de 5:Não Lida] [exec:0 de 2:Não Lida]
+|IdProcesso 2000||Tamanho Processo 7Kb||Quantidade Exec/Io 1| [exec:0 de 5:Não Lida]
+
+*************Processos na Fila de Bloqueados e Tempos Restantes*************
+
+*************Processo na CPU*************
+|Preenchido||Inicio = 0||Tamanho = 8||IdProcesso - 133| [exec:4 de 6:Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+|Vazio||Inicio = 8||Tamanho = 8||IdProcesso - N/A|
+ERRO.: IdProcesso 333 não alocado - Falta de Memória na CPU
+
+*************RESUMO EXECUÇÃO*************
+|TempoDecorrido T=5|
+Processo na CPU - IdProcesso 578|
+
+*************Processos na Fila de Pronto e Tempos Restantes*************
+|IdProcesso 1000||Tamanho Processo 10Kb||Quantidade Exec/Io 3| [exec:0 de 5:Não Lida] [io:0 de 5:Não Lida] [exec:0 de 2:Não Lida]
+|IdProcesso 2000||Tamanho Processo 7Kb||Quantidade Exec/Io 1| [exec:0 de 5:Não Lida]
+|IdProcesso 133||Tamanho Processo 8Kb||Quantidade Exec/Io 3| [exec:4 de 6:Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+|IdProcesso 333||Tamanho Processo 9Kb||Quantidade Exec/Io 5| [exec:0 de 4:Lida] [io:0 de 3:Não Lida] [exec:0 de 3:Não Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+
+*************Processos na Fila de Bloqueados e Tempos Restantes*************
+
+*************Processo na CPU*************
+|Vazio||Inicio = 0||Tamanho = 8||IdProcesso - N/A|
+|Preenchido||Inicio = 8||Tamanho = 2||IdProcesso - 578| [exec:1 de 7:Lida] [io:0 de 3:Não Lida]
+|Vazio||Inicio = 10||Tamanho = 6||IdProcesso - N/A|
+
+*************RESUMO EXECUÇÃO*************
+|TempoDecorrido T=6|
+Processo na CPU - IdProcesso 578|
+
+*************Processos na Fila de Pronto e Tempos Restantes*************
+|IdProcesso 1000||Tamanho Processo 10Kb||Quantidade Exec/Io 3| [exec:0 de 5:Não Lida] [io:0 de 5:Não Lida] [exec:0 de 2:Não Lida]
+|IdProcesso 2000||Tamanho Processo 7Kb||Quantidade Exec/Io 1| [exec:0 de 5:Não Lida]
+|IdProcesso 133||Tamanho Processo 8Kb||Quantidade Exec/Io 3| [exec:4 de 6:Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+|IdProcesso 333||Tamanho Processo 9Kb||Quantidade Exec/Io 5| [exec:0 de 4:Lida] [io:0 de 3:Não Lida] [exec:0 de 3:Não Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+
+*************Processos na Fila de Bloqueados e Tempos Restantes*************
+
+*************Processo na CPU*************
+|Vazio||Inicio = 0||Tamanho = 8||IdProcesso - N/A|
+|Preenchido||Inicio = 8||Tamanho = 2||IdProcesso - 578| [exec:2 de 7:Lida] [io:0 de 3:Não Lida]
+|Vazio||Inicio = 10||Tamanho = 6||IdProcesso - N/A|
+
+*************RESUMO EXECUÇÃO*************
+|TempoDecorrido T=7|
+Processo na CPU - IdProcesso 578|
+
+*************Processos na Fila de Pronto e Tempos Restantes*************
+|IdProcesso 1000||Tamanho Processo 10Kb||Quantidade Exec/Io 3| [exec:0 de 5:Não Lida] [io:0 de 5:Não Lida] [exec:0 de 2:Não Lida]
+|IdProcesso 2000||Tamanho Processo 7Kb||Quantidade Exec/Io 1| [exec:0 de 5:Não Lida]
+|IdProcesso 133||Tamanho Processo 8Kb||Quantidade Exec/Io 3| [exec:4 de 6:Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+|IdProcesso 333||Tamanho Processo 9Kb||Quantidade Exec/Io 5| [exec:0 de 4:Lida] [io:0 de 3:Não Lida] [exec:0 de 3:Não Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+
+*************Processos na Fila de Bloqueados e Tempos Restantes*************
+
+*************Processo na CPU*************
+|Vazio||Inicio = 0||Tamanho = 8||IdProcesso - N/A|
+|Preenchido||Inicio = 8||Tamanho = 2||IdProcesso - 578| [exec:3 de 7:Lida] [io:0 de 3:Não Lida]
+|Vazio||Inicio = 10||Tamanho = 6||IdProcesso - N/A|
+
+*************RESUMO EXECUÇÃO*************
+|TempoDecorrido T=8|
+Processo na CPU - IdProcesso 578|
+
+*************Processos na Fila de Pronto e Tempos Restantes*************
+|IdProcesso 1000||Tamanho Processo 10Kb||Quantidade Exec/Io 3| [exec:0 de 5:Não Lida] [io:0 de 5:Não Lida] [exec:0 de 2:Não Lida]
+|IdProcesso 2000||Tamanho Processo 7Kb||Quantidade Exec/Io 1| [exec:0 de 5:Não Lida]
+|IdProcesso 133||Tamanho Processo 8Kb||Quantidade Exec/Io 3| [exec:4 de 6:Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+|IdProcesso 333||Tamanho Processo 9Kb||Quantidade Exec/Io 5| [exec:0 de 4:Lida] [io:0 de 3:Não Lida] [exec:0 de 3:Não Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+
+*************Processos na Fila de Bloqueados e Tempos Restantes*************
+
+*************Processo na CPU*************
+|Vazio||Inicio = 0||Tamanho = 8||IdProcesso - N/A|
+|Preenchido||Inicio = 8||Tamanho = 2||IdProcesso - 578| [exec:4 de 7:Lida] [io:0 de 3:Não Lida]
+|Vazio||Inicio = 10||Tamanho = 6||IdProcesso - N/A|
+ERRO.: IdProcesso 1000 não alocado - Falta de Memória na CPU
+
+*************RESUMO EXECUÇÃO*************
+|TempoDecorrido T=9|
+Processo na CPU - IdProcesso 2000|
+
+*************Processos na Fila de Pronto e Tempos Restantes*************
+|IdProcesso 133||Tamanho Processo 8Kb||Quantidade Exec/Io 3| [exec:4 de 6:Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+|IdProcesso 333||Tamanho Processo 9Kb||Quantidade Exec/Io 5| [exec:0 de 4:Lida] [io:0 de 3:Não Lida] [exec:0 de 3:Não Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+|IdProcesso 578||Tamanho Processo 2Kb||Quantidade Exec/Io 2| [exec:4 de 7:Lida] [io:0 de 3:Não Lida]
+|IdProcesso 1000||Tamanho Processo 10Kb||Quantidade Exec/Io 3| [exec:0 de 5:Lida] [io:0 de 5:Não Lida] [exec:0 de 2:Não Lida]
+
+*************Processos na Fila de Bloqueados e Tempos Restantes*************
+
+*************Processo na CPU*************
+|Preenchido||Inicio = 0||Tamanho = 7||IdProcesso - 2000| [exec:1 de 5:Lida]
+|Vazio||Inicio = 7||Tamanho = 9||IdProcesso - N/A|
+
+*************RESUMO EXECUÇÃO*************
+|TempoDecorrido T=10|
+Processo na CPU - IdProcesso 2000|
+
+*************Processos na Fila de Pronto e Tempos Restantes*************
+|IdProcesso 133||Tamanho Processo 8Kb||Quantidade Exec/Io 3| [exec:4 de 6:Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+|IdProcesso 333||Tamanho Processo 9Kb||Quantidade Exec/Io 5| [exec:0 de 4:Lida] [io:0 de 3:Não Lida] [exec:0 de 3:Não Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+|IdProcesso 578||Tamanho Processo 2Kb||Quantidade Exec/Io 2| [exec:4 de 7:Lida] [io:0 de 3:Não Lida]
+|IdProcesso 1000||Tamanho Processo 10Kb||Quantidade Exec/Io 3| [exec:0 de 5:Lida] [io:0 de 5:Não Lida] [exec:0 de 2:Não Lida]
+
+*************Processos na Fila de Bloqueados e Tempos Restantes*************
+
+*************Processo na CPU*************
+|Preenchido||Inicio = 0||Tamanho = 7||IdProcesso - 2000| [exec:2 de 5:Lida]
+|Vazio||Inicio = 7||Tamanho = 9||IdProcesso - N/A|
+
+*************RESUMO EXECUÇÃO*************
+|TempoDecorrido T=11|
+Processo na CPU - IdProcesso 2000|
+
+*************Processos na Fila de Pronto e Tempos Restantes*************
+|IdProcesso 133||Tamanho Processo 8Kb||Quantidade Exec/Io 3| [exec:4 de 6:Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+|IdProcesso 333||Tamanho Processo 9Kb||Quantidade Exec/Io 5| [exec:0 de 4:Lida] [io:0 de 3:Não Lida] [exec:0 de 3:Não Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+|IdProcesso 578||Tamanho Processo 2Kb||Quantidade Exec/Io 2| [exec:4 de 7:Lida] [io:0 de 3:Não Lida]
+|IdProcesso 1000||Tamanho Processo 10Kb||Quantidade Exec/Io 3| [exec:0 de 5:Lida] [io:0 de 5:Não Lida] [exec:0 de 2:Não Lida]
+
+*************Processos na Fila de Bloqueados e Tempos Restantes*************
+
+*************Processo na CPU*************
+|Preenchido||Inicio = 0||Tamanho = 7||IdProcesso - 2000| [exec:3 de 5:Lida]
+|Vazio||Inicio = 7||Tamanho = 9||IdProcesso - N/A|
+
+*************RESUMO EXECUÇÃO*************
+|TempoDecorrido T=12|
+Processo na CPU - IdProcesso 2000|
+
+*************Processos na Fila de Pronto e Tempos Restantes*************
+|IdProcesso 133||Tamanho Processo 8Kb||Quantidade Exec/Io 3| [exec:4 de 6:Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+|IdProcesso 333||Tamanho Processo 9Kb||Quantidade Exec/Io 5| [exec:0 de 4:Lida] [io:0 de 3:Não Lida] [exec:0 de 3:Não Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+|IdProcesso 578||Tamanho Processo 2Kb||Quantidade Exec/Io 2| [exec:4 de 7:Lida] [io:0 de 3:Não Lida]
+|IdProcesso 1000||Tamanho Processo 10Kb||Quantidade Exec/Io 3| [exec:0 de 5:Lida] [io:0 de 5:Não Lida] [exec:0 de 2:Não Lida]
+
+*************Processos na Fila de Bloqueados e Tempos Restantes*************
+
+*************Processo na CPU*************
+|Preenchido||Inicio = 0||Tamanho = 7||IdProcesso - 2000| [exec:4 de 5:Lida]
+|Vazio||Inicio = 7||Tamanho = 9||IdProcesso - N/A|
+
+*************RESUMO EXECUÇÃO*************
+|TempoDecorrido T=13|
+Processo na CPU - IdProcesso 133|
+
+*************Processos na Fila de Pronto e Tempos Restantes*************
+|IdProcesso 333||Tamanho Processo 9Kb||Quantidade Exec/Io 5| [exec:0 de 4:Lida] [io:0 de 3:Não Lida] [exec:0 de 3:Não Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+|IdProcesso 578||Tamanho Processo 2Kb||Quantidade Exec/Io 2| [exec:4 de 7:Lida] [io:0 de 3:Não Lida]
+|IdProcesso 1000||Tamanho Processo 10Kb||Quantidade Exec/Io 3| [exec:0 de 5:Lida] [io:0 de 5:Não Lida] [exec:0 de 2:Não Lida]
+|IdProcesso 2000||Tamanho Processo 7Kb||Quantidade Exec/Io 1| [exec:4 de 5:Lida]
+
+*************Processos na Fila de Bloqueados e Tempos Restantes*************
+
+*************Processo na CPU*************
+|Vazio||Inicio = 0||Tamanho = 7||IdProcesso - N/A|
+|Preenchido||Inicio = 7||Tamanho = 8||IdProcesso - 133| [exec:5 de 6:Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+|Vazio||Inicio = 15||Tamanho = 1||IdProcesso - N/A|
+
+*************RESUMO EXECUÇÃO*************
+|TempoDecorrido T=14|
+Processo na CPU - IdProcesso 133|
+
+*************Processos na Fila de Pronto e Tempos Restantes*************
+|IdProcesso 333||Tamanho Processo 9Kb||Quantidade Exec/Io 5| [exec:0 de 4:Lida] [io:0 de 3:Não Lida] [exec:0 de 3:Não Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+|IdProcesso 578||Tamanho Processo 2Kb||Quantidade Exec/Io 2| [exec:4 de 7:Lida] [io:0 de 3:Não Lida]
+|IdProcesso 1000||Tamanho Processo 10Kb||Quantidade Exec/Io 3| [exec:0 de 5:Lida] [io:0 de 5:Não Lida] [exec:0 de 2:Não Lida]
+|IdProcesso 2000||Tamanho Processo 7Kb||Quantidade Exec/Io 1| [exec:4 de 5:Lida]
+
+*************Processos na Fila de Bloqueados e Tempos Restantes*************
+
+*************Processo na CPU*************
+|Vazio||Inicio = 0||Tamanho = 7||IdProcesso - N/A|
+|Preenchido||Inicio = 7||Tamanho = 8||IdProcesso - 133| [exec:6 de 6:Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+|Vazio||Inicio = 15||Tamanho = 1||IdProcesso - N/A|
+ERRO.: IdProcesso 333 não alocado - Falta de Memória na CPU
+
+*************RESUMO EXECUÇÃO*************
+|TempoDecorrido T=15|
+Processo na CPU - IdProcesso 578|
+
+*************Processos na Fila de Pronto e Tempos Restantes*************
+|IdProcesso 1000||Tamanho Processo 10Kb||Quantidade Exec/Io 3| [exec:0 de 5:Lida] [io:0 de 5:Não Lida] [exec:0 de 2:Não Lida]
+|IdProcesso 2000||Tamanho Processo 7Kb||Quantidade Exec/Io 1| [exec:4 de 5:Lida]
+|IdProcesso 333||Tamanho Processo 9Kb||Quantidade Exec/Io 5| [exec:0 de 4:Lida] [io:0 de 3:Não Lida] [exec:0 de 3:Não Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+
+*************Processos na Fila de Bloqueados e Tempos Restantes*************
+|IdProcesso 133||Tamanho Processo 8Kb||Quantidade Exec/Io 3| [exec:6 de 6:Lida] [io:1 de 2:Lida] [exec:0 de 5:Não Lida]
+
+*************Processo na CPU*************
+|Preenchido||Inicio = 0||Tamanho = 2||IdProcesso - 578| [exec:5 de 7:Lida] [io:0 de 3:Não Lida]
+|Vazio||Inicio = 2||Tamanho = 14||IdProcesso - N/A|
+
+*************RESUMO EXECUÇÃO*************
+|TempoDecorrido T=16|
+Processo na CPU - IdProcesso 578|
+
+*************Processos na Fila de Pronto e Tempos Restantes*************
+|IdProcesso 1000||Tamanho Processo 10Kb||Quantidade Exec/Io 3| [exec:0 de 5:Lida] [io:0 de 5:Não Lida] [exec:0 de 2:Não Lida]
+|IdProcesso 2000||Tamanho Processo 7Kb||Quantidade Exec/Io 1| [exec:4 de 5:Lida]
+|IdProcesso 333||Tamanho Processo 9Kb||Quantidade Exec/Io 5| [exec:0 de 4:Lida] [io:0 de 3:Não Lida] [exec:0 de 3:Não Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+|IdProcesso 133||Tamanho Processo 8Kb||Quantidade Exec/Io 3| [exec:6 de 6:Lida] [io:2 de 2:Lida] [exec:0 de 5:Lida]
+
+*************Processos na Fila de Bloqueados e Tempos Restantes*************
+
+*************Processo na CPU*************
+|Preenchido||Inicio = 0||Tamanho = 2||IdProcesso - 578| [exec:7 de 7:Lida] [io:0 de 3:Não Lida]
+|Vazio||Inicio = 2||Tamanho = 14||IdProcesso - N/A|
+
+*************RESUMO EXECUÇÃO*************
+|TempoDecorrido T=17|
+Processo na CPU - IdProcesso 1000|
+
+*************Processos na Fila de Pronto e Tempos Restantes*************
+|IdProcesso 2000||Tamanho Processo 7Kb||Quantidade Exec/Io 1| [exec:4 de 5:Lida]
+|IdProcesso 333||Tamanho Processo 9Kb||Quantidade Exec/Io 5| [exec:0 de 4:Lida] [io:0 de 3:Não Lida] [exec:0 de 3:Não Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+|IdProcesso 133||Tamanho Processo 8Kb||Quantidade Exec/Io 3| [exec:6 de 6:Lida] [io:2 de 2:Lida] [exec:0 de 5:Lida]
+
+*************Processos na Fila de Bloqueados e Tempos Restantes*************
+|IdProcesso 578||Tamanho Processo 2Kb||Quantidade Exec/Io 2| [exec:7 de 7:Lida] [io:1 de 3:Lida]
+
+*************Processo na CPU*************
+|Vazio||Inicio = 0||Tamanho = 2||IdProcesso - N/A|
+|Preenchido||Inicio = 2||Tamanho = 10||IdProcesso - 1000| [exec:1 de 5:Lida] [io:0 de 5:Não Lida] [exec:0 de 2:Não Lida]
+|Vazio||Inicio = 12||Tamanho = 4||IdProcesso - N/A|
+
+*************RESUMO EXECUÇÃO*************
+|TempoDecorrido T=18|
+Processo na CPU - IdProcesso 1000|
+
+*************Processos na Fila de Pronto e Tempos Restantes*************
+|IdProcesso 2000||Tamanho Processo 7Kb||Quantidade Exec/Io 1| [exec:4 de 5:Lida]
+|IdProcesso 333||Tamanho Processo 9Kb||Quantidade Exec/Io 5| [exec:0 de 4:Lida] [io:0 de 3:Não Lida] [exec:0 de 3:Não Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+|IdProcesso 133||Tamanho Processo 8Kb||Quantidade Exec/Io 3| [exec:6 de 6:Lida] [io:2 de 2:Lida] [exec:0 de 5:Lida]
+
+*************Processos na Fila de Bloqueados e Tempos Restantes*************
+|IdProcesso 578||Tamanho Processo 2Kb||Quantidade Exec/Io 2| [exec:7 de 7:Lida] [io:2 de 3:Lida]
+
+*************Processo na CPU*************
+|Vazio||Inicio = 0||Tamanho = 2||IdProcesso - N/A|
+|Preenchido||Inicio = 2||Tamanho = 10||IdProcesso - 1000| [exec:3 de 5:Lida] [io:0 de 5:Não Lida] [exec:0 de 2:Não Lida]
+|Vazio||Inicio = 12||Tamanho = 4||IdProcesso - N/A|
+
+*************RESUMO EXECUÇÃO*************
+|TempoDecorrido T=19|
+Processo na CPU - IdProcesso 1000|
+
+*************Processos na Fila de Pronto e Tempos Restantes*************
+|IdProcesso 2000||Tamanho Processo 7Kb||Quantidade Exec/Io 1| [exec:4 de 5:Lida]
+|IdProcesso 333||Tamanho Processo 9Kb||Quantidade Exec/Io 5| [exec:0 de 4:Lida] [io:0 de 3:Não Lida] [exec:0 de 3:Não Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+|IdProcesso 133||Tamanho Processo 8Kb||Quantidade Exec/Io 3| [exec:6 de 6:Lida] [io:2 de 2:Lida] [exec:0 de 5:Lida]
+
+*************Processos na Fila de Bloqueados e Tempos Restantes*************
+
+*************Processo na CPU*************
+|Vazio||Inicio = 0||Tamanho = 2||IdProcesso - N/A|
+|Preenchido||Inicio = 2||Tamanho = 10||IdProcesso - 1000| [exec:4 de 5:Lida] [io:0 de 5:Não Lida] [exec:0 de 2:Não Lida]
+|Vazio||Inicio = 12||Tamanho = 4||IdProcesso - N/A|
+ERRO.: IdProcesso 2000 não alocado - Falta de Memória na CPU
+ERRO.: IdProcesso 333 não alocado - Falta de Memória na CPU
+ERRO.: IdProcesso 133 não alocado - Falta de Memória na CPU
+ERRO.: IdProcesso 1000 não alocado - Falta de Memória na CPU
+
+*************RESUMO EXECUÇÃO*************
+|TempoDecorrido T=20|
+Processo na CPU - IdProcesso 2000|
+
+*************Processos na Fila de Pronto e Tempos Restantes*************
+|IdProcesso 333||Tamanho Processo 9Kb||Quantidade Exec/Io 5| [exec:0 de 4:Lida] [io:0 de 3:Não Lida] [exec:0 de 3:Não Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+|IdProcesso 133||Tamanho Processo 8Kb||Quantidade Exec/Io 3| [exec:6 de 6:Lida] [io:2 de 2:Lida] [exec:0 de 5:Lida]
+|IdProcesso 1000||Tamanho Processo 10Kb||Quantidade Exec/Io 3| [exec:4 de 5:Lida] [io:0 de 5:Não Lida] [exec:0 de 2:Não Lida]
+
+*************Processos na Fila de Bloqueados e Tempos Restantes*************
+
+*************Processo na CPU*************
+|Preenchido||Inicio = 0||Tamanho = 7||IdProcesso - 2000| [exec:5 de 5:Lida]
+|Vazio||Inicio = 7||Tamanho = 9||IdProcesso - N/A|
+
+*************RESUMO EXECUÇÃO*************
+|TempoDecorrido T=21|
+Processo na CPU - IdProcesso 333|
+
+*************Processos na Fila de Pronto e Tempos Restantes*************
+|IdProcesso 133||Tamanho Processo 8Kb||Quantidade Exec/Io 3| [exec:6 de 6:Lida] [io:2 de 2:Lida] [exec:0 de 5:Lida]
+|IdProcesso 1000||Tamanho Processo 10Kb||Quantidade Exec/Io 3| [exec:4 de 5:Lida] [io:0 de 5:Não Lida] [exec:0 de 2:Não Lida]
+
+*************Processos na Fila de Bloqueados e Tempos Restantes*************
+
+*************Processo na CPU*************
+|Vazio||Inicio = 0||Tamanho = 7||IdProcesso - N/A|
+|Preenchido||Inicio = 7||Tamanho = 9||IdProcesso - 333| [exec:1 de 4:Lida] [io:0 de 3:Não Lida] [exec:0 de 3:Não Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+
+*************RESUMO EXECUÇÃO*************
+|TempoDecorrido T=22|
+Processo na CPU - IdProcesso 333|
+
+*************Processos na Fila de Pronto e Tempos Restantes*************
+|IdProcesso 133||Tamanho Processo 8Kb||Quantidade Exec/Io 3| [exec:6 de 6:Lida] [io:2 de 2:Lida] [exec:0 de 5:Lida]
+|IdProcesso 1000||Tamanho Processo 10Kb||Quantidade Exec/Io 3| [exec:4 de 5:Lida] [io:0 de 5:Não Lida] [exec:0 de 2:Não Lida]
+
+*************Processos na Fila de Bloqueados e Tempos Restantes*************
+
+*************Processo na CPU*************
+|Vazio||Inicio = 0||Tamanho = 7||IdProcesso - N/A|
+|Preenchido||Inicio = 7||Tamanho = 9||IdProcesso - 333| [exec:2 de 4:Lida] [io:0 de 3:Não Lida] [exec:0 de 3:Não Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+
+*************RESUMO EXECUÇÃO*************
+|TempoDecorrido T=23|
+Processo na CPU - IdProcesso 333|
+
+*************Processos na Fila de Pronto e Tempos Restantes*************
+|IdProcesso 133||Tamanho Processo 8Kb||Quantidade Exec/Io 3| [exec:6 de 6:Lida] [io:2 de 2:Lida] [exec:0 de 5:Lida]
+|IdProcesso 1000||Tamanho Processo 10Kb||Quantidade Exec/Io 3| [exec:4 de 5:Lida] [io:0 de 5:Não Lida] [exec:0 de 2:Não Lida]
+
+*************Processos na Fila de Bloqueados e Tempos Restantes*************
+
+*************Processo na CPU*************
+|Vazio||Inicio = 0||Tamanho = 7||IdProcesso - N/A|
+|Preenchido||Inicio = 7||Tamanho = 9||IdProcesso - 333| [exec:3 de 4:Lida] [io:0 de 3:Não Lida] [exec:0 de 3:Não Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+
+*************RESUMO EXECUÇÃO*************
+|TempoDecorrido T=24|
+Processo na CPU - IdProcesso 333|
+
+*************Processos na Fila de Pronto e Tempos Restantes*************
+|IdProcesso 133||Tamanho Processo 8Kb||Quantidade Exec/Io 3| [exec:6 de 6:Lida] [io:2 de 2:Lida] [exec:0 de 5:Lida]
+|IdProcesso 1000||Tamanho Processo 10Kb||Quantidade Exec/Io 3| [exec:4 de 5:Lida] [io:0 de 5:Não Lida] [exec:0 de 2:Não Lida]
+
+*************Processos na Fila de Bloqueados e Tempos Restantes*************
+
+*************Processo na CPU*************
+|Vazio||Inicio = 0||Tamanho = 7||IdProcesso - N/A|
+|Preenchido||Inicio = 7||Tamanho = 9||IdProcesso - 333| [exec:4 de 4:Lida] [io:0 de 3:Não Lida] [exec:0 de 3:Não Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+ERRO.: IdProcesso 133 não alocado - Falta de Memória na CPU
+ERRO.: IdProcesso 1000 não alocado - Falta de Memória na CPU
+
+*************RESUMO EXECUÇÃO*************
+|TempoDecorrido T=25|
+Processo na CPU - IdProcesso 133|
+
+*************Processos na Fila de Pronto e Tempos Restantes*************
+|IdProcesso 1000||Tamanho Processo 10Kb||Quantidade Exec/Io 3| [exec:4 de 5:Lida] [io:0 de 5:Não Lida] [exec:0 de 2:Não Lida]
+
+*************Processos na Fila de Bloqueados e Tempos Restantes*************
+|IdProcesso 333||Tamanho Processo 9Kb||Quantidade Exec/Io 5| [exec:4 de 4:Lida] [io:1 de 3:Lida] [exec:0 de 3:Não Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+
+*************Processo na CPU*************
+|Preenchido||Inicio = 0||Tamanho = 8||IdProcesso - 133| [exec:6 de 6:Lida] [io:2 de 2:Lida] [exec:1 de 5:Lida]
+|Vazio||Inicio = 8||Tamanho = 8||IdProcesso - N/A|
+
+*************RESUMO EXECUÇÃO*************
+|TempoDecorrido T=26|
+Processo na CPU - IdProcesso 133|
+
+*************Processos na Fila de Pronto e Tempos Restantes*************
+|IdProcesso 1000||Tamanho Processo 10Kb||Quantidade Exec/Io 3| [exec:4 de 5:Lida] [io:0 de 5:Não Lida] [exec:0 de 2:Não Lida]
+
+*************Processos na Fila de Bloqueados e Tempos Restantes*************
+|IdProcesso 333||Tamanho Processo 9Kb||Quantidade Exec/Io 5| [exec:4 de 4:Lida] [io:2 de 3:Lida] [exec:0 de 3:Não Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+
+*************Processo na CPU*************
+|Preenchido||Inicio = 0||Tamanho = 8||IdProcesso - 133| [exec:6 de 6:Lida] [io:2 de 2:Lida] [exec:3 de 5:Lida]
+|Vazio||Inicio = 8||Tamanho = 8||IdProcesso - N/A|
+
+*************RESUMO EXECUÇÃO*************
+|TempoDecorrido T=27|
+Processo na CPU - IdProcesso 133|
+
+*************Processos na Fila de Pronto e Tempos Restantes*************
+|IdProcesso 1000||Tamanho Processo 10Kb||Quantidade Exec/Io 3| [exec:4 de 5:Lida] [io:0 de 5:Não Lida] [exec:0 de 2:Não Lida]
+|IdProcesso 333||Tamanho Processo 9Kb||Quantidade Exec/Io 5| [exec:4 de 4:Lida] [io:3 de 3:Lida] [exec:0 de 3:Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+
+*************Processos na Fila de Bloqueados e Tempos Restantes*************
+
+*************Processo na CPU*************
+|Preenchido||Inicio = 0||Tamanho = 8||IdProcesso - 133| [exec:6 de 6:Lida] [io:2 de 2:Lida] [exec:4 de 5:Lida]
+|Vazio||Inicio = 8||Tamanho = 8||IdProcesso - N/A|
+ERRO.: IdProcesso 1000 não alocado - Falta de Memória na CPU
+ERRO.: IdProcesso 333 não alocado - Falta de Memória na CPU
+
+*************RESUMO EXECUÇÃO*************
+|TempoDecorrido T=28|
+Processo na CPU - IdProcesso 133|
+
+*************Processos na Fila de Pronto e Tempos Restantes*************
+|IdProcesso 1000||Tamanho Processo 10Kb||Quantidade Exec/Io 3| [exec:4 de 5:Lida] [io:0 de 5:Não Lida] [exec:0 de 2:Não Lida]
+|IdProcesso 333||Tamanho Processo 9Kb||Quantidade Exec/Io 5| [exec:4 de 4:Lida] [io:3 de 3:Lida] [exec:0 de 3:Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+
+*************Processos na Fila de Bloqueados e Tempos Restantes*************
+
+*************Processo na CPU*************
+|Vazio||Inicio = 0||Tamanho = 8||IdProcesso - N/A|
+|Preenchido||Inicio = 8||Tamanho = 8||IdProcesso - 133| [exec:6 de 6:Lida] [io:2 de 2:Lida] [exec:5 de 5:Lida]
+ERRO.: IdProcesso 1000 não alocado - Falta de Memória na CPU
+ERRO.: IdProcesso 333 não alocado - Falta de Memória na CPU
+
+*************RESUMO EXECUÇÃO*************
+|TempoDecorrido T=29|
+Processo na CPU - IdProcesso 1000|
+
+*************Processos na Fila de Pronto e Tempos Restantes*************
+|IdProcesso 333||Tamanho Processo 9Kb||Quantidade Exec/Io 5| [exec:4 de 4:Lida] [io:3 de 3:Lida] [exec:0 de 3:Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+
+*************Processos na Fila de Bloqueados e Tempos Restantes*************
+
+*************Processo na CPU*************
+|Preenchido||Inicio = 0||Tamanho = 10||IdProcesso - 1000| [exec:5 de 5:Lida] [io:0 de 5:Não Lida] [exec:0 de 2:Não Lida]
+|Vazio||Inicio = 10||Tamanho = 6||IdProcesso - N/A|
+ERRO.: IdProcesso 333 não alocado - Falta de Memória na CPU
+
+*************RESUMO EXECUÇÃO*************
+|TempoDecorrido T=30|
+Processo na CPU - IdProcesso 333|
+
+*************Processos na Fila de Pronto e Tempos Restantes*************
+
+*************Processos na Fila de Bloqueados e Tempos Restantes*************
+|IdProcesso 1000||Tamanho Processo 10Kb||Quantidade Exec/Io 3| [exec:5 de 5:Lida] [io:1 de 5:Lida] [exec:0 de 2:Não Lida]
+
+*************Processo na CPU*************
+|Preenchido||Inicio = 0||Tamanho = 9||IdProcesso - 333| [exec:4 de 4:Lida] [io:3 de 3:Lida] [exec:1 de 3:Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+|Vazio||Inicio = 9||Tamanho = 7||IdProcesso - N/A|
+
+*************RESUMO EXECUÇÃO*************
+|TempoDecorrido T=31|
+Processo na CPU - IdProcesso 333|
+
+*************Processos na Fila de Pronto e Tempos Restantes*************
+
+*************Processos na Fila de Bloqueados e Tempos Restantes*************
+|IdProcesso 1000||Tamanho Processo 10Kb||Quantidade Exec/Io 3| [exec:5 de 5:Lida] [io:2 de 5:Lida] [exec:0 de 2:Não Lida]
+
+*************Processo na CPU*************
+|Preenchido||Inicio = 0||Tamanho = 9||IdProcesso - 333| [exec:4 de 4:Lida] [io:3 de 3:Lida] [exec:3 de 3:Lida] [io:0 de 2:Não Lida] [exec:0 de 5:Não Lida]
+|Vazio||Inicio = 9||Tamanho = 7||IdProcesso - N/A|
+
+*************RESUMO EXECUÇÃO*************
+|TempoDecorrido T=32|
+
+*************Processos na Fila de Pronto e Tempos Restantes*************
+
+*************Processos na Fila de Bloqueados e Tempos Restantes*************
+|IdProcesso 333||Tamanho Processo 9Kb||Quantidade Exec/Io 5| [exec:4 de 4:Lida] [io:3 de 3:Lida] [exec:3 de 3:Lida] [io:0 de 2:Lida] [exec:0 de 5:Não Lida]
+|IdProcesso 1000||Tamanho Processo 10Kb||Quantidade Exec/Io 3| [exec:5 de 5:Lida] [io:3 de 5:Lida] [exec:0 de 2:Não Lida]
+
+*************Processo na CPU*************
+|Vazio||Inicio = 0||Tamanho = 16||IdProcesso - N/A|
+
+*************RESUMO EXECUÇÃO*************
+|TempoDecorrido T=33|
+
+*************Processos na Fila de Pronto e Tempos Restantes*************
+
+*************Processos na Fila de Bloqueados e Tempos Restantes*************
+|IdProcesso 1000||Tamanho Processo 10Kb||Quantidade Exec/Io 3| [exec:5 de 5:Lida] [io:3 de 5:Lida] [exec:0 de 2:Não Lida]
+|IdProcesso 333||Tamanho Processo 9Kb||Quantidade Exec/Io 5| [exec:4 de 4:Lida] [io:3 de 3:Lida] [exec:3 de 3:Lida] [io:1 de 2:Lida] [exec:0 de 5:Não Lida]
+
+*************Processo na CPU*************
+|Vazio||Inicio = 0||Tamanho = 16||IdProcesso - N/A|
+
+*************RESUMO EXECUÇÃO*************
+|TempoDecorrido T=34|
+
+*************Processos na Fila de Pronto e Tempos Restantes*************
+|IdProcesso 1000||Tamanho Processo 10Kb||Quantidade Exec/Io 3| [exec:5 de 5:Lida] [io:6 de 5:Lida] [exec:0 de 2:Lida]
+
+*************Processos na Fila de Bloqueados e Tempos Restantes*************
+|IdProcesso 333||Tamanho Processo 9Kb||Quantidade Exec/Io 5| [exec:4 de 4:Lida] [io:3 de 3:Lida] [exec:3 de 3:Lida] [io:1 de 2:Lida] [exec:0 de 5:Não Lida]
+
+*************Processo na CPU*************
+|Vazio||Inicio = 0||Tamanho = 16||IdProcesso - N/A|
+
+*************RESUMO EXECUÇÃO*************
+|TempoDecorrido T=35|
+Processo na CPU - IdProcesso 1000|
+
+*************Processos na Fila de Pronto e Tempos Restantes*************
+|IdProcesso 333||Tamanho Processo 9Kb||Quantidade Exec/Io 5| [exec:4 de 4:Lida] [io:3 de 3:Lida] [exec:3 de 3:Lida] [io:3 de 2:Lida] [exec:0 de 5:Lida]
+
+*************Processos na Fila de Bloqueados e Tempos Restantes*************
+
+*************Processo na CPU*************
+|Preenchido||Inicio = 0||Tamanho = 10||IdProcesso - 1000| [exec:5 de 5:Lida] [io:6 de 5:Lida] [exec:1 de 2:Lida]
+|Vazio||Inicio = 10||Tamanho = 6||IdProcesso - N/A|
+
+*************RESUMO EXECUÇÃO*************
+|TempoDecorrido T=36|
+Processo na CPU - IdProcesso 1000| 
+
+*************Processos na Fila de Pronto e Tempos Restantes*************
+|IdProcesso 333||Tamanho Processo 9Kb||Quantidade Exec/Io 5| [exec:4 de 4:Lida] [io:3 de 3:Lida] [exec:3 de 3:Lida] [io:3 de 2:Lida] [exec:0 de 5:Lida]
+
+*************Processos na Fila de Bloqueados e Tempos Restantes*************
+
+*************Processo na CPU*************
+|Preenchido||Inicio = 0||Tamanho = 10||IdProcesso - 1000| [exec:5 de 5:Lida] [io:6 de 5:Lida] [exec:2 de 2:Lida]
+|Vazio||Inicio = 10||Tamanho = 6||IdProcesso - N/A|
+ERRO.: IdProcesso 333 não alocado - Falta de Memória na CPU
+
+*************RESUMO EXECUÇÃO*************
+|TempoDecorrido T=37|
+Processo na CPU - IdProcesso 333|
 
 *************Processos na Fila de Pronto e Tempos Restantes*************
 
 *************Processos na Fila de Bloqueados e Tempos Restantes*************
 
 *************Processo na CPU*************
-|Preenchido||Inicio = 0||Tamanho = 2||IdProcesso - 133|
-|Vazio||Inicio = 2||Tamanho = 14||IdProcesso - N/A|
-|TempoDecorrido 0|
+|Preenchido||Inicio = 0||Tamanho = 9||IdProcesso - 333| [exec:4 de 4:Lida] [io:3 de 3:Lida] [exec:3 de 3:Lida] [io:3 de 2:Lida] [exec:1 de 5:Lida]
+|Vazio||Inicio = 9||Tamanho = 7||IdProcesso - N/A|
+
+*************RESUMO EXECUÇÃO*************
+|TempoDecorrido T=38|
+Processo na CPU - IdProcesso 333|
+
+*************Processos na Fila de Pronto e Tempos Restantes*************
+
+*************Processos na Fila de Bloqueados e Tempos Restantes*************
+
+*************Processo na CPU*************
+|Preenchido||Inicio = 0||Tamanho = 9||IdProcesso - 333| [exec:4 de 4:Lida] [io:3 de 3:Lida] [exec:3 de 3:Lida] [io:3 de 2:Lida] [exec:2 de 5:Lida]
+|Vazio||Inicio = 9||Tamanho = 7||IdProcesso - N/A|
+
+*************RESUMO EXECUÇÃO*************
+|TempoDecorrido T=39|
+Processo na CPU - IdProcesso 333|
+
+*************Processos na Fila de Pronto e Tempos Restantes*************
+
+*************Processos na Fila de Bloqueados e Tempos Restantes*************
+
+*************Processo na CPU*************
+|Preenchido||Inicio = 0||Tamanho = 9||IdProcesso - 333| [exec:4 de 4:Lida] [io:3 de 3:Lida] [exec:3 de 3:Lida] [io:3 de 2:Lida] [exec:3 de 5:Lida]
+|Vazio||Inicio = 9||Tamanho = 7||IdProcesso - N/A|
+
+*************RESUMO EXECUÇÃO*************
+|TempoDecorrido T=40|
+Processo na CPU - IdProcesso 333|
+
+*************Processos na Fila de Pronto e Tempos Restantes*************
+
+*************Processos na Fila de Bloqueados e Tempos Restantes*************
+
+*************Processo na CPU*************
+|Preenchido||Inicio = 0||Tamanho = 9||IdProcesso - 333| [exec:4 de 4:Lida] [io:3 de 3:Lida] [exec:3 de 3:Lida] [io:3 de 2:Lida] [exec:4 de 5:Lida]
+|Vazio||Inicio = 9||Tamanho = 7||IdProcesso - N/A|
+
+*************RESUMO EXECUÇÃO*************
+|TempoDecorrido T=41|
+Processo na CPU - IdProcesso 333|
+
+*************Processos na Fila de Pronto e Tempos Restantes*************
+
+*************Processos na Fila de Bloqueados e Tempos Restantes*************
+
+*************Processo na CPU*************
+|Preenchido||Inicio = 0||Tamanho = 9||IdProcesso - 333| [exec:4 de 4:Lida] [io:3 de 3:Lida] [exec:3 de 3:Lida] [io:3 de 2:Lida] [exec:5 de 5:Lida]
+|Vazio||Inicio = 9||Tamanho = 7||IdProcesso - N/A|
+
+*************RESUMO EXECUÇÃO*************
+|TempoDecorrido T=42|
+
+*************Processos na Fila de Pronto e Tempos Restantes*************
+
+*************Processos na Fila de Bloqueados e Tempos Restantes*************
+
+*************Processo na CPU*************
+|Vazio||Inicio = 0||Tamanho = 16||IdProcesso - N/A|
